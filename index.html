@@ -10,20 +10,31 @@
 <style>
   body { margin:0; padding:0; }
   #map { position:absolute; top:0; bottom:0; width:100%; }
+  #ball { position:absolute; top: 200px; left: 400px; height: 30px; }
 </style>
 
 </head>
 <body>
 <div id='map'></div>
 <script>
+var speed = [0,0];
 
 L.mapbox.accessToken = 'pk.eyJ1Ijoic2ZsdWlkIiwiYSI6ImNpanhseG9xNjE0M3Z2M2x6NWRvbWt6b2EifQ.umRvOZQIab8uyagvnq3jjQ';
 var map = L.mapbox.map('map', 'mapbox.dark', {doubleClickZoom: false, scrollWheelZoom: false, touchZoom: false, dragging: false})
-    .setView([40, -74.50], 9)
-    .on("click",function() {
-        this.panBy(L.point(5, 0));
+    .setView([40, -74.50], 9);
+
+$("#map").on("click",function(e) {
+        x = (e.pageX - 400) / 8;
+        y = (e.pageY - 200) / 8;
+        speed = [x,y];
     });
 
+setInterval( "moveBall()", 20 );
+
+function moveBall() {
+    map.panBy(speed);
+}
 </script>
+<img src="http://www.psdgraphics.com/file/white-golf-ball.jpg" id="ball" />
 </body>
 </html>
