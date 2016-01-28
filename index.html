@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Golf on a map</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.mapbox.com/mapbox.js/v2.2.4/mapbox.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/v2.2.4/mapbox.css' rel='stylesheet' />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<style>
+  body { margin:0; padding:0; }
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+
+</head>
+<body>
+<div id='map'></div>
+<script>
+
+L.mapbox.accessToken = 'pk.eyJ1Ijoic2ZsdWlkIiwiYSI6ImNpanhseG9xNjE0M3Z2M2x6NWRvbWt6b2EifQ.umRvOZQIab8uyagvnq3jjQ';
+var map = L.mapbox.map('map', 'mapbox.dark', {doubleClickZoom: false, scrollWheelZoom: false, touchZoom: false, dragging: false})
+    .setView([40, -74.50], 9)
+    .on("click",function() {
+        this.panBy(L.point(5, 0));
+    });
+
+</script>
+</body>
+</html>
